@@ -1,0 +1,68 @@
+create table aluno(
+id_aluno serial primary key not null,
+nome text,
+data_nasc text,
+sexo char(1),
+est_civil char(15),
+endereco text,
+bairro text,
+entidade text,
+cidade text,
+cep char(20),
+tel char(12),
+responsavel text,
+rg char(18),
+cpf char(18),
+horario_optado char(30),
+data_pag char(20),
+obs text,
+data_cad text
+);
+
+
+create table controle(
+id_controle serial primary key not null,
+nome_aluno text,
+curso text,
+apostila char(1),
+data_entre char(10),
+media char(5),
+frequencia char(5),
+data_desistencia char(20),
+motivo text,
+id_aluno integer not null,
+constraint chave_estrangeira foreign key (id_aluno) references aluno(id_aluno)
+on delete cascade
+);
+
+create table pagamento(     
+id_pagamento serial primary key not null,
+nome_alunopag text,
+mar text,
+abr text,
+mai text,
+jun text,
+jul text,
+ago text,
+set text,
+out text,
+nov text,
+dez text,
+jan text,
+fev text,
+id_aluno integer not null,
+constraint chave_estrangeira foreign key (id_aluno) references aluno(id_aluno)
+on delete cascade
+);
+
+create table recibo(
+id_recibo serial primary key not null,
+valor text,
+nome text,
+importancia text,
+referente text,
+data text,
+id_aluno integer not null,
+constraint chave_estrangeira foreign key (id_aluno) references aluno(id_aluno)
+on delete cascade
+);
